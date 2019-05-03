@@ -16,6 +16,28 @@ class CobiroStoreAPI(object):
         data = json_data.get(store_name)
         return data
 
+    def create_product(self, store_name, product_data):
+        json_data, json_file = self._file_stream()
+        store = json_data.get(store_name)
+        store.append(product_data)
+        with open(json_file, 'w') as outfile:
+            json.dump(json_data, outfile)
+        outfile.close()
+        return product_data
+
+    def create_store(self, store_name):
+        json_data, json_file = self._file_stream()
+        if store_name not in json_data:
+            json_data.update({store_name: []})
+            with open(json_file, 'w') as outfile:
+                json.dump(json_data, outfile)
+            outfile.close()
+            return json_data.get(store_name)
+        else:
+            msg = """Cannot create store with name {store_name}.
+                     Store already exists!""".format(store_name)
+            CobiroStoreException(msg)
+
     def _file_stream(self):
         with open(self.data_file_path) as json_file:
             json_data = json.load(json_file)
