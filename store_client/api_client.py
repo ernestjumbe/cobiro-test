@@ -8,7 +8,7 @@ class CobiroStoreAPI(object):
 
     def get_stores(self):
         json_data, json_file = self._file_stream()
-        data = json_data.keys()
+        data = [{"store_name": key} for key in json_data.keys()]
         return data
 
     def get_store_products(self, store_name):
