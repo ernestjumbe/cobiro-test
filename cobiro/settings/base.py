@@ -60,6 +60,10 @@ INSTALLED_APPS = [
     # Third paty apps
 
     'rest_framework',
+
+    # Project apps
+
+    'stores',
 ]
 
 MIDDLEWARE = [
