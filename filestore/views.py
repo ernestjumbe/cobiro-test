@@ -1,12 +1,8 @@
-# Python imports
-import urllib.parse
-
 # Django imports
 from django.shortcuts import render
 
 # DRF imports
 from rest_framework import generics
-from rest_framework import viewsets
 
 # Module imports
 from .serializers import StoreSerializer, StoreProductsSerializer

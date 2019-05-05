@@ -5,10 +5,17 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path, re_path
 
-api_urlpatterns = [
-    path('stores/',
-        include('filestore.urls')),
-]
+
+if settings.DATA_SOURCE == "json_file":
+    api_urlpatterns = [
+        path('stores/',
+            include('filestore.urls')),
+    ]
+else:
+    api_urlpatterns = [
+        path('stores/',
+            include('stores.urls')),
+    ]
 
 urlpatterns = [
     # Examples:
