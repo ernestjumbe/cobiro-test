@@ -5,11 +5,16 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path, re_path
 
+api_urlpatterns = [
+    path('stores/',
+        include('filestore.urls')),
+]
+
 urlpatterns = [
     # Examples:
     # re_path(r'^$', 'mysite.views.home', name='home'),
     # re_path(r'^blog/', blog.urls),
-    re_path(r'^$', TemplateView.as_view(template_name="index.html"), {}, name='index'),
+    path('api/', include(api_urlpatterns)),
 
     path('admin', admin.site.urls),
 ]
