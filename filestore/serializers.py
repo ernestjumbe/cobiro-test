@@ -1,5 +1,7 @@
+# Library imports
 from rest_framework import serializers
 
+# Third party imports
 from store_client import CobiroStoreAPI
 
 store_api = CobiroStoreAPI('english_shops.json')
@@ -7,6 +9,9 @@ store_api = CobiroStoreAPI('english_shops.json')
 class StoreSerializer(serializers.Serializer):
 
     store_name = serializers.CharField()
+
+    def save(self):
+        store_api.create_store(self.validated_data['store_name'])
 
 class StoreProductsSerializer(serializers.Serializer):
 
