@@ -1,10 +1,11 @@
 # Library imports
+from django.conf import settings
 from rest_framework import serializers
 
 # Third party imports
 from store_client import CobiroStoreAPI
 
-store_api = CobiroStoreAPI('english_shops.json')
+store_api = CobiroStoreAPI(settings.DATA_SOURCE_FILE)
 
 class StoreSerializer(serializers.Serializer):
 
